@@ -8,5 +8,8 @@ export * from './Search';
 export { default as FoundEvents } from './FoundEvents';
 export * from './FoundEvents';
 
+export { default as MyEvents } from './MyEvents';
+export * from './MyEvents';
+
 export { default as Event } from './Event';
 export * from './Event';

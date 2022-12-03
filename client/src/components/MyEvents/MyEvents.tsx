@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { AxiosResponse, AxiosError } from 'axios';
 
 import { Event } from './../';
 
 import { addModal, popModal, addError } from '../../actions/modal-actions';
-import { addEventInfo } from '../../actions/event-actions';
+import { fetchEventInfoListFromDatabase, addEventInfo } from '../../actions/event-actions';
 
 import { ApplicationState } from '../../store';
 import { ModalState } from '../../types/redux/ModalTypes';
 import { SearchState } from '../../types/redux/SearchTypes';
+import { EventState } from '../../types/redux/EventTypes';
 import IEventInfo from '../../types/info/IEventInfo';
 
 
@@ -25,7 +27,7 @@ interface IOwnProps {
 //redux state props
 interface IReduxStateProps {
     modal: ModalState,
-    search: SearchState
+    event: EventState
 }
 
 interface IReduxDispatchProps {
@@ -39,14 +41,32 @@ type Props = IOwnProps & IReduxStateProps & IReduxDispatchProps;
 
 class FoundEvents extends React.PureComponent<Props, IStateProps> {
 
+    //load all my saved events from database
+    componentDidMount() {
+
+        fetchEventInfoListFromDatabase()
+            .then( ( response: AxiosResponse<IEventInfo[]> ) => {
+                const { status, data } = response;
+
+                //init homepage with my events
+                data.map( eventInfo => {
+                    
+                    this.props.addEventInfo( eventInfo );
+                } );
+
+            } ).catch( ( error: AxiosError ) => {
+                this.props.addError( error.message );
+            } );
+    }
+
     render() {
 
-        if ( this.props.search.foundEventList.length === 0 ) {
+        if ( this.props.event.length === 0 ) {
             return <b>No events found</b>;
         }
 
         //we have some events in store
-        return this.props.search.foundEventList.map( ( e: IEventInfo, i: number ) => {
+        return this.props.event.map( ( e: IEventInfo, i: number ) => {
             return <React.Fragment key={ i }>
                 <Event eventInfo={ e } />
             </React.Fragment>
@@ -57,7 +77,7 @@ class FoundEvents extends React.PureComponent<Props, IStateProps> {
 
 const mapStateToProps = ( state: ApplicationState ): IReduxStateProps => ( {
     modal: state.modalReducer,
-    search: state.searchReducer
+    event: state.eventReducer
 } );
 
 const mapDispatchToProps = ( dispatch: Function ): IReduxDispatchProps => ( {

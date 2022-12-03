@@ -53,26 +53,17 @@ class Search extends React.PureComponent<Props, IStateProps> {
     }
 
     searchListener = () => {
-        //TODO
-        //if ( this.state.searchTerm.trim().length > CONFIG.MIN_SEARCH_TERM_LENGHT ) {
 
         searchEventList(
             10, 0
         ).then( ( response: AxiosResponse<IOpen511Response<IEventInfo>> ) => {
             const { data } = response;
-            console.log( response );
-            console.log( data.events );
+             
             this.props.storeFoundEventList( data.events );
 
         } ).catch( ( error: AxiosError ) => {
             this.props.addError( error.message );
         } );
-
-
-        //}
-
-
-
 
     }
 

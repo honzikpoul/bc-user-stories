@@ -2,6 +2,7 @@ import IEventInfo from '../info/IEventInfo';
 
 //actions
 export const ACTIONS = {
+    INIT: 'INIT',
     ADD: 'ADD',
     REMOVE: 'REMOVE'
 };
@@ -16,7 +17,7 @@ interface RemoveEventAction {
     payload: IEventInfo
 }
 
-export type EventActionTypes = AddEventAction |  RemoveEventAction;
+export type EventActionTypes =  AddEventAction |  RemoveEventAction;
 
 //reducer state
 export type EventState = IEventInfo[];

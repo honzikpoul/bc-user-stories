@@ -1,4 +1,6 @@
 
+import IEventInfo from '../types/info/IEventInfo';
+
 export function getLocalStorageItem( key: string, defaultValue: any ) {
 
     var value: any | null = localStorage.getItem( key );
@@ -18,4 +20,11 @@ export function setLocalStorageItem( key: string, value: any ) {
     }
 
     localStorage.setItem( key, JSON.stringify( value ) );
+}
+
+//the '/' -> '~' because json server not support ids with /
+//in ideal world some hash function will be applied
+export function fixJsonServerId( eventInfo: IEventInfo ): IEventInfo {
+    eventInfo.id = eventInfo.id.replace( '/', '~' );
+    return eventInfo;
 }

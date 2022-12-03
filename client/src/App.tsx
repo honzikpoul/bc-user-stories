@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addModal, popModal, addError } from './actions/modal-actions';
-import { Modal, Search, FoundEvents } from './components/';
+import { Modal, Search, FoundEvents, MyEvents } from './components/';
 
 import { ApplicationState } from './store';
 import { ModalState } from './types/redux/ModalTypes';
+import { EventState } from './types/redux/EventTypes';
 
 
 //component state
@@ -20,7 +21,8 @@ interface IOwnProps {
 
 //redux state props
 interface IReduxStateProps {
-    modal: ModalState
+    modal: ModalState,
+    event: EventState
 }
 
 interface IReduxDispatchProps {
@@ -58,7 +60,14 @@ class App extends React.PureComponent<Props, IStateProps> {
                 <div className="album py-5 bg-light">
                     <div className="container">
                         <div className="row">
-                             <FoundEvents />
+                            <div className="col-6">
+                                <h2>Found events</h2>
+                                <FoundEvents />
+                            </div>
+                            <div className="col-6">
+                                <h2>My saved events { this.props.event.length }x</h2>
+                                <MyEvents />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,7 +82,8 @@ class App extends React.PureComponent<Props, IStateProps> {
 }
 
 const mapStateToProps = ( state: ApplicationState ): IReduxStateProps => ( {
-    modal: state.modalReducer
+    modal: state.modalReducer,
+    event: state.eventReducer
 } );
 
 const mapDispatchToProps = ( dispatch: Function ): IReduxDispatchProps => ( {
