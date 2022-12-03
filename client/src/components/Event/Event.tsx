@@ -71,7 +71,7 @@ class FoundEvents extends React.PureComponent<Props, IStateProps> {
         return <React.Fragment>
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">{ this.props.eventInfo.headline }</h5>
+                    <h5 className="card-title">{ this.props.eventInfo.headline } | <small className="text-muted">{ this.props.eventInfo.severity }</small></h5>
                     <h6 className="card-subtitle mb-2 text-muted">{ `Updated: ${ updatedDate.toLocaleDateString() } ${ updatedDate.toLocaleTimeString() }` }</h6>
                     <p className="card-text">{ this.props.eventInfo.description }</p>
                     <p className=" text-end">

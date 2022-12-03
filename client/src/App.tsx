@@ -48,9 +48,9 @@ class App extends React.PureComponent<Props, IStateProps> {
     render() {
         return <React.Fragment>
             <main>
-                <section className="py-5 text-center container">
-                    <div className="row py-lg-5">
-                        <div className="col-lg-6 col-md-8 mx-auto">
+                <section className="py-3 text-center container">
+                    <div className="row py-lg-2">
+                        <div className="col-lg-8 col-md-10 mx-auto">
                             <h1 className="fw-light">Bc User stories</h1>
                             <Search />
                         </div>
