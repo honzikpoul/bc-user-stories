@@ -1,8 +1,8 @@
 # bc-user-stories
-Example created by "Create React App" and JSON server as an database
+Example created by "Create React App" template with "JSON server" as an database and Twitter bootstrap used for UI components
 - https://create-react-app.dev/docs/adding-typescript/
 - https://www.npmjs.com/package/json-server
-
+- https://getbootstrap.com/docs/5.2/getting-started/download/
 
 # run server
 - install server
