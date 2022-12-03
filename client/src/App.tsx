@@ -1,10 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { connect } from 'react-redux';
 
 import { addModal, popModal, addError } from './actions/modal-actions';
-import { Modal } from './components/';
+import { Modal, Search, FoundEvents } from './components/';
 
 import { ApplicationState } from './store';
 import { ModalState } from './types/redux/ModalTypes';
@@ -17,7 +15,7 @@ interface IStateProps {
 
 //component props
 interface IOwnProps {
-    
+
 }
 
 //redux state props
@@ -36,7 +34,7 @@ type Props = IOwnProps & IReduxStateProps & IReduxDispatchProps;
 class App extends React.PureComponent<Props, IStateProps> {
 
     onModalTest = () => {
-        const modal = <Modal dialogCloseListener={ () => this.props.popModal()}  >
+        const modal = <Modal dialogCloseListener={ () => this.props.popModal() }  >
             <React.Fragment>
                 Hello world from dialog
             </React.Fragment>
@@ -47,27 +45,29 @@ class App extends React.PureComponent<Props, IStateProps> {
 
     render() {
         return <React.Fragment>
-           
-            <div className="App">
-                <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                  </p>
-                  <a
-                    className="btn btn-primary"
-                    onClick={ e => this.onModalTest() }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Open test dialog
-                  </a>
-                </header>
-              </div>
-        
-            { this.props.modal.length > 0 && <React.Fragment>
-                { this.props.modal[ this.props.modal.length - 1 ] }
-            </React.Fragment> }
+            <main>
+                <section className="py-5 text-center container">
+                    <div className="row py-lg-5">
+                        <div className="col-lg-6 col-md-8 mx-auto">
+                            <h1 className="fw-light">Bc User stories</h1>
+                            <Search />
+                        </div>
+                    </div>
+                </section>
+
+                <div className="album py-5 bg-light">
+                    <div className="container">
+                        <div className="row">
+                             <FoundEvents />
+                        </div>
+                    </div>
+                </div>
+            </main>
+            {
+                this.props.modal.length > 0 && <React.Fragment>
+                    { this.props.modal[ this.props.modal.length - 1 ] }
+                </React.Fragment>
+            }
         </React.Fragment>;
     }
 }

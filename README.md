@@ -3,6 +3,7 @@ Example created by "Create React App" template with "JSON server" as an database
 - https://create-react-app.dev/docs/adding-typescript/
 - https://www.npmjs.com/package/json-server
 - https://getbootstrap.com/docs/5.2/getting-started/download/
+- builded on this free template https://getbootstrap.com/docs/5.2/examples/album/
 
 # run server
 - install server

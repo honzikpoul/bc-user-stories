@@ -3,6 +3,10 @@ export default interface IEventInfo {
     id: string
     headline: string;
     description: string;
+    status: string;
+    severity: string;
+    created: string;
+    updated: string;
     //... todo later 
 }
 

@@ -1,4 +1,3 @@
-
 import { EventActionTypes, ACTIONS } from './../types/redux/EventTypes';
 import IEventInfo from './../types/info/IEventInfo';
 
